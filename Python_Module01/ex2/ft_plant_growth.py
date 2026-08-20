@@ -20,7 +20,7 @@ class Plant:
 
 if __name__ == "__main__":
     print("=== Garden Plant Growth ===")
-    plant_rose = Plant("Rose", 25.0, 30)
+    plant_rose: Plant = Plant("Rose", 25.0, 30)
     count_grow: float = 0.0
     plant_rose.show()
     for i in range(1, 8):
