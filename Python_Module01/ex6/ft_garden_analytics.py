@@ -53,7 +53,8 @@ class Plant:
         self.set_age(current_age + days)
 
     def display_stats(self) -> None:
-        print(f"Stats: {self.stat_grow} grow, {self.stat_age} age, {self.stat_show} show")
+        print(f"Stats: {self.stat_grow} grow, {self.stat_age} age,"
+              f"{self.stat_show} show")
 
     @staticmethod
     def check_year_old(age: int) -> bool:
