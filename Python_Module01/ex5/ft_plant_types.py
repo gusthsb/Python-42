@@ -82,9 +82,7 @@ class Tree(Plant):
         print(f"Trunk diameter: {self.trunk_diameter}cm")
 
 
-
 class Vegetable(Plant):
-
     def __init__(self, name: str, height: float, age: int,
                  harvest_season: str, nutritional_value: int):
         super().__init__(name, height, age)
@@ -123,7 +121,8 @@ if __name__ == "__main__":
     tree_oak.produce_shade()
     tree_oak.show()
     tree_oak.produce_shade()
-    print(f"Tree {tree_oak.get_name()} now produces a shade of {tree_oak.get_height()}cm"
+    print(f"Tree {tree_oak.get_name()} now produces a shade"
+          f"of {tree_oak.get_height()}cm"
           f" long and {tree_oak.trunk_diameter}cm wide.")
 
     print("=== Vegetable")
