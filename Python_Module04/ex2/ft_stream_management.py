@@ -25,31 +25,41 @@ def process_archive() -> None:
         file_opening.close()
         print(f"File '{file_name}' closed.\n")
 
-        print("Transform data:")
-        print("---\n")
+    except (FileNotFoundError, PermissionError) as e:
+        sys.stderr.write(f"[STDERR] Error opening file '{file_name}': {e}\n")
+        return
 
-        splited_line: list[str] = read_content.split('\n')
-        processed_line: list[str] = [
-            line + "#" if line else line for line in splited_line
-        ]
+    print("Transform data:")
+    print("---\n")
 
-        last_text: str = '\n'.join(processed_line)
-        print(last_text, end="")
-        print("\n---")
+    splited_line: list[str] = read_content.split('\n')
+    processed_line: list[str] = [
+        line + "#" if line else line for line in splited_line
+    ]
 
-        new_file_name: str = input("Enter new file name (or empty): ")
+    last_text: str = '\n'.join(processed_line)
+    print(last_text, end="")
+    print("\n---")
 
-        if not new_file_name:
-            print("Not saving data.")
-        else:
-            print(f"Saving data to '{new_file_name}'")
+    sys.stdout.write("Enter new file name (or empty): ")
+    sys.stdout.flush()
+
+    new_file_name: str = sys.stdin.readline().strip('\n')
+
+    if not new_file_name:
+        print("Not saving data.")
+    else:
+        print(f"Saving data to '{new_file_name}'")
+
+        try:
             new_file: typing.IO = open(new_file_name, 'w')
             new_file.write(last_text)
             new_file.close()
             print(f"Data saved in file '{new_file_name}'.")
-
-    except (FileNotFoundError, PermissionError) as e:
-        sys.stderr.write(f"[STDERR] Error opening file '{file_name}': {e}\n")
+        except (FileNotFoundError, PermissionError) as e:
+            sys.stderr.write(f"[STDERR] Error opening file"
+                             f"'{file_name}': {e}\n")
+            print("Data not saved.")
 
 
 if __name__ == "__main__":
