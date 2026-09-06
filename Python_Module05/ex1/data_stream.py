@@ -109,56 +109,85 @@ class LogProcessor(DataProcessor):
 
 
 class DataStream():
-    pass
+    def __init__(self) -> None:
+        self._processors: list[DataProcessor] = list()
+
+    def register_processor(self, proc: DataProcessor) -> None:
+        self._processors.append(proc)
+
+    def process_stream(self, stream: list[typing.Any]) -> None:
+        for item in stream:
+            is_processed: bool = False
+            for processor in self._processors:
+                if processor.validate(item):
+                    processor.ingest(item)
+                    is_processed = True
+                    break
+
+            if not is_processed:
+                print(f"DataStream error - Can't process "
+                      f"element in stream: {item}")
+
+    def print_processors_stats(self) -> None:
+        print("== DataStream statistics ==")
+
+        if len(self._processors) == 0:
+            print("No processor found, no data")
+
+        for processor in self._processors:
+            name = processor.__class__.__name__.replace("Processor", " Processor")
+            remaining = len(processor._storage)
+            total = remaining + processor._rank
+            
+            print(f"{name}: total {total} "
+                  f"items processed, remaining {remaining} on processor")
 
 
 if __name__ == "__main__":
-    print("=== Code Nexus - Data Processor ===\n")
+    print("=== Code Nexus - Data Stream ===")
+    
+    print("\nInitialize Data Stream...")
+    stream = DataStream()
+    stream.print_processors_stats()
 
-    print("Testing Numeric Processor...")
+    print("\nRegistering Numeric Processor")
     num_proc = NumericProcessor()
+    stream.register_processor(num_proc)
 
-    print(f"Trying to validate input '42': {num_proc.validate(42)}")
-    print(f"Trying to validate input 'Hello': {num_proc.validate('Hello')}")
-
-    print("Test invalid ingestion of string 'foo' without prior validation:")
-    try:
-        pass # so para nao mostrar o erro :)
-        # num_proc.ingest("foo")
-    except Exception as e:
-        print(f"Got exception: {e}")
-
-    print("Processing data: [1, 2, 3, 4, 5]")
-    num_proc.ingest([1, 2, 3, 4, 5])
-    print("Extracting 3 values...")
-    for _ in range(3):
-        rank, val = num_proc.output()
-        print(f"Numeric value {rank}: {val}")
-
-    print("\nTesting Text Processor...")
-    txt_proc = TextProcessor()
-
-    print(f"Trying to validate input '42': {txt_proc.validate(42)}")
-    print("Processing data: ['Hello', 'Nexus', 'World']")
-    txt_proc.ingest(['Hello', 'Nexus', 'World'])
-
-    print("Extracting 1 value...")
-    rank, val = txt_proc.output()
-    print(f"Text value {rank}: {val}")
-
-    print("\nTesting Log Processor...")
-    log_proc = LogProcessor()
-
-    print(f"Trying to validate input 'Hello': {log_proc.validate('Hello')}")
-
-    log_data = [
-        {'log_level': 'NOTICE', 'log_message': 'Connection to server'},
-        {'log_level': 'ERROR', 'log_message': 'Unauthorized access!!'}
+    batch = [
+        'Hello world', 
+        [3.14, -1, 2.71], 
+        [
+            {'log_level': 'WARNING', 'log_message': 'Telnet access! Use ssh instead'}, 
+            {'log_level': 'INFO', 'log_message': 'User wil is connected'}
+        ], 
+        42, 
+        ['Hi', 'five']
     ]
-    print(f"Processing data: {log_data}")
-    log_proc.ingest(log_data)
+    
+    print(f"Send first batch of data on stream: {batch}")
+    stream.process_stream(batch)
+    stream.print_processors_stats()
 
-    print("Extracting 2 values...")
+    print("\nRegistering other data processors")
+    txt_proc = TextProcessor()
+    log_proc = LogProcessor()
+    stream.register_processor(txt_proc)
+    stream.register_processor(log_proc)
+
+    print("Send the same batch again")
+    stream.process_stream(batch)
+    stream.print_processors_stats()
+
+    print("\nConsume some elements from the data processors: Numeric 3, Text 2, Log 1")
+
+    for _ in range(3):
+        num_proc.output()
+
     for _ in range(2):
-        rank, val = log_proc.output()
-        print(f"Log entry {rank}: {val}")
+        txt_proc.output()
+
+    for _ in range(1):
+        log_proc.output()
+
+    stream.print_processors_stats()
