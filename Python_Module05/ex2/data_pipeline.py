@@ -108,6 +108,19 @@ class LogProcessor(DataProcessor):
                 self._storage.append(str(content))
 
 
+class ExportPlugin(typing.Protocol):
+    def process_output(self, data: list[tuple[int, str]]) -> None:
+        pass
+
+
+class CSVPlugin(typing.Protocol):
+    def process_output(self, data: list[tuple[int, str]]) -> None:
+        pass
+
+
+class JSONPlugin(typing.Protocol):
+    def process_output(self, data: list[tuple[int, str]]) -> None:
+        pass    
 class DataStream():
     def __init__(self) -> None:
         self._processors: list[DataProcessor] = list()
@@ -141,6 +154,17 @@ class DataStream():
             
             print(f"{name}: total {total} "
                   f"items processed, remaining {remaining} on processor")
+
+    def output_pipeline(self, nb: int, plugin: ExportPlugin) -> None:
+        for processor in self._processors:
+            data_extracted = []
+            for _ in range(nb):
+                if len(processor._storage) > 0:
+                    data_extracted.append(processor.output())
+
+            plugin.process_output(data_extracted)
+
+
 
 
 if __name__ == "__main__":
