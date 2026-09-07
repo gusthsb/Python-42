@@ -135,17 +135,18 @@ class DataStream():
             print("No processor found, no data")
 
         for processor in self._processors:
-            name = processor.__class__.__name__.replace("Processor", " Processor")
+            raw_name = processor.__class__.__name__
+            name = raw_name.replace("Processor", " Processor")
             remaining = len(processor._storage)
             total = remaining + processor._rank
-            
+
             print(f"{name}: total {total} "
                   f"items processed, remaining {remaining} on processor")
 
 
 if __name__ == "__main__":
     print("=== Code Nexus - Data Stream ===")
-    
+
     print("\nInitialize Data Stream...")
     stream = DataStream()
     stream.print_processors_stats()
@@ -155,16 +156,17 @@ if __name__ == "__main__":
     stream.register_processor(num_proc)
 
     batch = [
-        'Hello world', 
-        [3.14, -1, 2.71], 
+        'Hello world',
+        [3.14, -1, 2.71],
         [
-            {'log_level': 'WARNING', 'log_message': 'Telnet access! Use ssh instead'}, 
+            {'log_level': 'WARNING', 'log_message':
+             'Telnet access! Use ssh instead'},
             {'log_level': 'INFO', 'log_message': 'User wil is connected'}
-        ], 
-        42, 
+        ],
+        42,
         ['Hi', 'five']
     ]
-    
+
     print(f"Send first batch of data on stream: {batch}")
     stream.process_stream(batch)
     stream.print_processors_stats()
@@ -179,7 +181,8 @@ if __name__ == "__main__":
     stream.process_stream(batch)
     stream.print_processors_stats()
 
-    print("\nConsume some elements from the data processors: Numeric 3, Text 2, Log 1")
+    print("\nConsume some elements from the data processors: "
+          "Numeric 3, Text 2, Log 1")
 
     for _ in range(3):
         num_proc.output()
