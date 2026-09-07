@@ -113,14 +113,18 @@ class ExportPlugin(typing.Protocol):
         pass
 
 
-class CSVPlugin(typing.Protocol):
+class CSVPlugin:
     def process_output(self, data: list[tuple[int, str]]) -> None:
-        pass
+        values = [item[1] for item in data]
+        csv_line = ",".join(values)
+        print(f"CSV Output: {csv_line}")
 
 
-class JSONPlugin(typing.Protocol):
+class JSONPlugin:
     def process_output(self, data: list[tuple[int, str]]) -> None:
-        pass    
+            pass
+
+
 class DataStream():
     def __init__(self) -> None:
         self._processors: list[DataProcessor] = list()
@@ -163,8 +167,6 @@ class DataStream():
                     data_extracted.append(processor.output())
 
             plugin.process_output(data_extracted)
-
-
 
 
 if __name__ == "__main__":
