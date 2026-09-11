@@ -1,9 +1,6 @@
-#!/usr/bin/env python3
-
-def create_earth() -> None:
-    print("Earth element created")
+def create_earth() -> str:
+    return ("Earth element created")
 
 
-def create_air() -> None:
-    print("Air elemente created")
-    
+def create_air() -> str:
+    return ("Air element created")
