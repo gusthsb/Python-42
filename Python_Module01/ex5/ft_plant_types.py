@@ -97,7 +97,7 @@ class Vegetable(Plant):
         super().age(days)
         self.nutritional_value += 10
 
-    def show(self):
+    def show(self) -> None:
         super().show()
         print(f"Harvest season: {self.harvest_season}")
         print(f"Nutritional value: {self.nutritional_value}")
