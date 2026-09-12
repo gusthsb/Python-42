@@ -112,7 +112,7 @@ class Tree(Plant):
 class Vegetable(Plant):
 
     def __init__(self, name: str, height: float, age: int,
-                 harvest_season: str, nutritional_value: int):
+                 harvest_season: str, nutritional_value: int) -> None:
         super().__init__(name, height, age)
         self.harvest_season = harvest_season
         self.nutritional_value = nutritional_value
