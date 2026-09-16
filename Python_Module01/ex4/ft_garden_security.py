@@ -31,7 +31,7 @@ class Plant:
         if new_age < 0:
             print(f"{self._name.capitalize()}: Error, age"
                   f" can't be negative")
-            print("Age update rejected")
+            print("Age update rejected\n")
         else:
             self._age = new_age
 
@@ -49,11 +49,12 @@ if __name__ == "__main__":
     print("=== Garden Security System ===")
     print("Plant created: ", end="")
     plant.show()
+    print()
 
     plant.set_height(25.0)
     print("Height updated: 25cm")
     plant.set_age(30)
-    print("Age updated: 30 days")
+    print("Age updated: 30 days\n")
 
     plant.set_height(-5.0)
     plant.set_age(-10)

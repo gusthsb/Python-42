@@ -61,7 +61,7 @@ class Flower(Plant):
         super().show()
         print(f"Color: {self.color}")
         if self.is_blooming:
-            print(f"{self._name} is blooming beautifully!")
+            print(f"{self._name} is blooming beautifully!\n")
         else:
             print(f"{self._name} has not bloomed yet")
 
@@ -84,7 +84,7 @@ class Tree(Plant):
 
 class Vegetable(Plant):
     def __init__(self, name: str, height: float, age: int,
-                 harvest_season: str, nutritional_value: int) -> None:
+                 harvest_season: str, nutritional_value: int):
         super().__init__(name, height, age)
         self.harvest_season = harvest_season
         self.nutritional_value = nutritional_value
@@ -97,7 +97,7 @@ class Vegetable(Plant):
         super().age(days)
         self.nutritional_value += 10
 
-    def show(self) -> None:
+    def show(self):
         super().show()
         print(f"Harvest season: {self.harvest_season}")
         print(f"Nutritional value: {self.nutritional_value}")
@@ -119,11 +119,10 @@ if __name__ == "__main__":
     tree_oak.show()
     print(f"[asking the {tree_oak.get_name()} to produce shade]")
     tree_oak.produce_shade()
-    tree_oak.show()
     tree_oak.produce_shade()
     print(f"Tree {tree_oak.get_name()} now produces a shade"
           f"of {tree_oak.get_height()}cm"
-          f" long and {tree_oak.trunk_diameter}cm wide.")
+          f" long and {tree_oak.trunk_diameter}cm wide.\n")
 
     print("=== Vegetable")
     vegetable_tomato.show()

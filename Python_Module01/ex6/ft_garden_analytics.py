@@ -54,7 +54,7 @@ class Plant:
 
     def display_stats(self) -> None:
         print(f"Stats: {self.stat_grow} grow, {self.stat_age} age,"
-              f"{self.stat_show} show")
+              f" {self.stat_show} show")
 
     @staticmethod
     def check_year_old(age: int) -> bool:
@@ -112,7 +112,7 @@ class Tree(Plant):
 class Vegetable(Plant):
 
     def __init__(self, name: str, height: float, age: int,
-                 harvest_season: str, nutritional_value: int) -> None:
+                 harvest_season: str, nutritional_value: int):
         super().__init__(name, height, age)
         self.harvest_season = harvest_season
         self.nutritional_value = nutritional_value
