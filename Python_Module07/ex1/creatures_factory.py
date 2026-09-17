@@ -1,7 +1,8 @@
 from abc import ABC, abstractmethod
 from ex0 import CreatureFactory
 from ex0.creatures import Creature
-from creatures import Sproutling, Bloomelle
+from creatures import Sproutling, Bloomelle, Shiftling, Morphagon
+
 
 class TransformCapability(ABC):
     def __init__(self) -> None:
@@ -41,7 +42,7 @@ class TransformCreatureFactory(CreatureFactory):
         super().__init__()
 
     def create_base(self, name: str) -> Creature:
-        return Sproutling(name)
+        return Shiftling(name)
 
     def create_evolved(self, name: str) -> Creature:
-        return Bloomelle(name)
+        return Morphagon(name)
