@@ -13,5 +13,26 @@ def test_factory(factory: CreatureFactory, b_name: str, e_name: str) -> None:
     print(base_creature.attack())
     print(evolved_creature.describe())
     print(evolved_creature.attack())
+    print()
 
-test_factory(FlameFactory(), "Flameling", "Pyrodon")
+
+def base_battle(factory1: CreatureFactory, factory2: CreatureFactory,
+                b1_name: str, b2_name: str) -> None:
+    """
+    Make a battle with two bases creatures
+    """
+    b1_creature = factory1.create_base(b1_name)
+    b2_creature = factory2.create_base(b2_name)
+    print("Testing battle")
+    print(b1_creature.describe())
+    print("vs.")
+    print(b2_creature.describe())
+    print("fight!")
+    print(b1_creature.attack())
+    print(b2_creature.attack())
+
+
+if __name__ == "__main__":
+    test_flame_creature = test_factory(FlameFactory(), "Flameling", "Pyrodon")
+    test_aqua_creature = test_factory(AquaFactory(), "Aquabub", "Torragon")
+    base_battle(FlameFactory(), AquaFactory(), "Flameling", "Aquabub")
