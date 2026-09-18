@@ -1,29 +1,6 @@
-from abc import ABC, abstractmethod
 from ex0 import CreatureFactory
 from ex0.creatures import Creature
-from creatures import Sproutling, Bloomelle, Shiftling, Morphagon
-
-
-class TransformCapability(ABC):
-    def __init__(self) -> None:
-        super().__init__()
-
-    @abstractmethod
-    def transform(self) -> str:
-        pass
-
-    @abstractmethod
-    def revert(self) -> str:
-        pass
-
-
-class HealCapability(ABC):
-    def __init__(self) -> None:
-        super().__init__()
-
-    @abstractmethod
-    def heal(self) -> str:
-        pass
+from .creatures import Sproutling, Bloomelle, Shiftling, Morphagon
 
 
 class HealingCreatureFactory(CreatureFactory):
