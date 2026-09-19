@@ -24,3 +24,41 @@ def tournament(opponents: list[tuple[CreatureFactory, bs]]) -> None:
 
             c1 = factory1.create_base(n1)
             c2 = factory2.create_base(n2)
+
+            print(f"* Battle * {c1.describe()} vs.\n{c2.describe()} now fight!")
+
+            try:
+                strategy1.act(c1)
+                strategy2.act(c2)
+            except ValueError as e:
+                print(f"Battle error, aborting tournament: {e}")
+                return
+
+
+if __name__ == "__main__":
+    flame = FlameFactory()
+    aqua = AquaFactory()
+    heal = HealingCreatureFactory()
+    transform = TransformCreatureFactory()
+    normal_strat = NormalStrategy()
+    def_strat = DefensiveStrategy()
+    agr_strat = AggressiveStrategy()
+
+    print("Tournament 0 (basic) [ (Flameling+Normal), (Healing+Defensive) ]")
+    tournament([
+        (flame, normal_strat),
+        (heal, def_strat)
+    ])
+
+    print("\nTournament 1 (error) [ (Flameling+Aggressive), (Healing+Defensive) ]")
+    tournament([
+        (flame, agr_strat),
+        (heal, def_strat)
+    ])
+
+    print("\nTournament 2 (multiple) [ (Aquabub+Normal), (Healing+Defensive), (Transform+Aggressive) ]")
+    tournament([
+        (aqua, normal_strat),
+        (heal, def_strat),
+        (transform, agr_strat)
+    ])
