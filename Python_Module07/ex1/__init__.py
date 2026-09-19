@@ -1,2 +1,2 @@
 from .creatures_factory import HealingCreatureFactory, TransformCreatureFactory
-from .capabilites import HealCapability, TransformCapability
+from .capabilities import HealCapability, TransformCapability

@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 from ex0.creatures import Creature
-from ex1.capabilites import HealCapability, TransformCapability
+from ex1.capabilities import HealCapability, TransformCapability
 
 
 class BattleStrategy(ABC):
@@ -27,6 +27,9 @@ class DefensiveStrategy(BattleStrategy):
         if not self.is_valid(creature):
             raise ValueError(f"Invalid Creature '{creature.name}' "
                              f"for this defensive strategy")
+        print(creature.attack())
+        if isinstance(creature, HealCapability):
+            print(creature.heal())
     
 
 class NormalStrategy(BattleStrategy):
@@ -40,6 +43,7 @@ class NormalStrategy(BattleStrategy):
         if not self.is_valid(creature):
             raise ValueError(f"Invalid Creature '{creature.name}' "
                              f"for this normal strategy")
+        print(creature.attack())
 
 
 class AggressiveStrategy(BattleStrategy):
@@ -53,3 +57,7 @@ class AggressiveStrategy(BattleStrategy):
         if not self.is_valid(creature):
             raise ValueError(f"Invalid creature '{creature.name}' "
                              f"for this agressive strategy")
+        if isinstance(creature, TransformCapability):
+            print(creature.transform())
+            print(creature.attack())
+            print(creature.revert())
