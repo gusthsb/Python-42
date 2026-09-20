@@ -2,8 +2,9 @@ from ex1 import HealingCreatureFactory, TransformCreatureFactory
 from ex1 import HealCapability, TransformCapability
 
 
-def test_healing_factory(factory: HealingCreatureFactory, b_name: str,
-                         e_name: str) -> None:
+def test_healing_factory(
+    factory: HealingCreatureFactory, b_name: str, e_name: str
+) -> None:
     """
     Testing creations, discriptions, attacks and heals of the creatures
     """
@@ -25,8 +26,9 @@ def test_healing_factory(factory: HealingCreatureFactory, b_name: str,
         print(evolved_creature.heal())
 
 
-def test_transform_factory(factory: TransformCreatureFactory, b_name: str,
-                           e_name: str) -> None:
+def test_transform_factory(
+    factory: TransformCreatureFactory, b_name: str, e_name: str
+) -> None:
     """
     Testing creations, discriptions, attacks and transform of the creatures
     """
@@ -51,12 +53,11 @@ def test_transform_factory(factory: TransformCreatureFactory, b_name: str,
 
     print(evolved_creature.describe())
     print(evolved_creature.attack())
-    
     if isinstance(evolved_creature, TransformCapability):
         print(evolved_creature.transform())
-    
+
     print(evolved_creature.attack())
-    
+
     if isinstance(evolved_creature, TransformCapability):
         print(evolved_creature.revert())
 

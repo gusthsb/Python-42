@@ -5,7 +5,7 @@ from ex1.capabilities import HealCapability, TransformCapability
 
 class BattleStrategy(ABC):
     def __init__(self) -> None:
-        super().__init__()  
+        super().__init__()
 
     @abstractmethod
     def act(self, creature: Creature) -> None:
@@ -25,12 +25,13 @@ class DefensiveStrategy(BattleStrategy):
 
     def act(self, creature: Creature) -> None:
         if not self.is_valid(creature):
-            raise ValueError(f"Invalid Creature '{creature.name}' "
-                             f"for this defensive strategy")
+            raise ValueError(
+                f"Invalid Creature '{creature.name}' " f"for this defensive strategy"
+            )
         print(creature.attack())
         if isinstance(creature, HealCapability):
             print(creature.heal())
-    
+
 
 class NormalStrategy(BattleStrategy):
     def __init__(self) -> None:
@@ -41,8 +42,9 @@ class NormalStrategy(BattleStrategy):
 
     def act(self, creature: Creature) -> None:
         if not self.is_valid(creature):
-            raise ValueError(f"Invalid Creature '{creature.name}' "
-                             f"for this normal strategy")
+            raise ValueError(
+                f"Invalid Creature '{creature.name}' " f"for this normal strategy"
+            )
         print(creature.attack())
 
 
@@ -52,11 +54,12 @@ class AggressiveStrategy(BattleStrategy):
 
     def is_valid(self, creature: Creature) -> bool:
         return isinstance(creature, TransformCapability)
-    
+
     def act(self, creature: Creature) -> None:
         if not self.is_valid(creature):
-            raise ValueError(f"Invalid creature '{creature.name}' "
-                             f"for this agressive strategy")
+            raise ValueError(
+                f"Invalid creature '{creature.name}' " f"for this agressive strategy"
+            )
         if isinstance(creature, TransformCapability):
             print(creature.transform())
             print(creature.attack())

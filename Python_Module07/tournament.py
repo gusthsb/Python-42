@@ -11,7 +11,7 @@ def tournament(opponents: list[tuple[CreatureFactory, bs]]) -> None:
         "FlameFactory": "Flameling",
         "AquaFactory": "Aquabub",
         "HealingCreatureFactory": "Sproutling",
-        "TransformCreatureFactory": "Shiftling"
+        "TransformCreatureFactory": "Shiftling",
     }
 
     for i in range(len(opponents)):
@@ -25,7 +25,8 @@ def tournament(opponents: list[tuple[CreatureFactory, bs]]) -> None:
             c1 = factory1.create_base(n1)
             c2 = factory2.create_base(n2)
 
-            print(f"* Battle * {c1.describe()} vs.\n{c2.describe()} now fight!")
+            print(f"* Battle * {c1.describe()} "
+                  f"vs.\n{c2.describe()} now fight!")
 
             try:
                 strategy1.act(c1)
@@ -45,20 +46,15 @@ if __name__ == "__main__":
     agr_strat = AggressiveStrategy()
 
     print("Tournament 0 (basic) [ (Flameling+Normal), (Healing+Defensive) ]")
-    tournament([
-        (flame, normal_strat),
-        (heal, def_strat)
-    ])
+    tournament([(flame, normal_strat), (heal, def_strat)])
 
-    print("\nTournament 1 (error) [ (Flameling+Aggressive), (Healing+Defensive) ]")
-    tournament([
-        (flame, agr_strat),
-        (heal, def_strat)
-    ])
+    print("\nTournament 1 (error) [ "
+          "(Flameling+Aggressive), (Healing+Defensive) ]")
+    tournament([(flame, agr_strat), (heal, def_strat)])
 
-    print("\nTournament 2 (multiple) [ (Aquabub+Normal), (Healing+Defensive), (Transform+Aggressive) ]")
-    tournament([
-        (aqua, normal_strat),
-        (heal, def_strat),
-        (transform, agr_strat)
-    ])
+    print(
+        "\nTournament 2 (multiple) [ (Aquabub+Normal), "
+        "(Healing+Defensive), (Transform+Aggressive) ]"
+    )
+    tournament([(aqua, normal_strat), (heal, def_strat),
+                (transform, agr_strat)])
