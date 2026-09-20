@@ -63,5 +63,6 @@ def test_transform_factory(
 
 
 if __name__ == "__main__":
-    test_healing_factory(HealingCreatureFactory(), "Sproutling", "Bloomelle")
-    test_transform_factory(TransformCreatureFactory(), "Shiftling", "Morphagon")
+    nlist = ["Sproutling", "Bloomelle", "Shiftling", "Morphagon"]
+    test_healing_factory(HealingCreatureFactory(), nlist[0], nlist[1])
+    test_transform_factory(TransformCreatureFactory(), nlist[2], nlist[3])

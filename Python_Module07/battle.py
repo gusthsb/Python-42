@@ -16,9 +16,8 @@ def test_factory(factory: CreatureFactory, b_name: str, e_name: str) -> None:
     print()
 
 
-def base_battle(
-    factory1: CreatureFactory, factory2: CreatureFactory, 
-    b1_name: str, b2_name: str) -> None:
+def base_battle(factory1: CreatureFactory, factory2: CreatureFactory,
+                b1_name: str, b2_name: str) -> None:
     """
     Make a battle with two bases creatures
     """
