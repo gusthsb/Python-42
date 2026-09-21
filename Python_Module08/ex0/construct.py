@@ -16,7 +16,7 @@ def check_venv_name() -> str:
         venv_name = os.path.basename(venv_path)
         return f"Virtual Environment: {venv_name}"
     else:
-        return f"Virtual Environment: None detected"
+        return "Virtual Environment: None detected"
 
 
 if __name__ == "__main__":
