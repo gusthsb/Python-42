@@ -28,7 +28,8 @@ if __name__ == "__main__":
         print("SUCCESS: You're in an isolated environment!")
         print("Safe to install packages without affecting")
         print("the global system.\n")
-        print(f"Package installation path: {sys.path[-1]}")
+        print("Package installation path:")
+        print(f"{sys.path[-1]}")
     else:
         print("\nMATRIX STATUS: You're still plugged in\n")
         print(f"{py_path()}")
