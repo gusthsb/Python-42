@@ -17,17 +17,17 @@ class WaterError(GardenError):
 
 
 def test_errors() -> None:
-    print("=== Custom Garden Errors Demo ===")
+    print("=== Custom Garden Errors Demo ===\n")
 
     print("Testing PlantError...")
     try:
-        raise PlantError("The tomato plant is wilting!")
+        raise PlantError("The tomato plant is wilting!\n")
     except PlantError as ex:
         print(f"Caught PlantError: {ex}")
 
     print("Testing WaterError...")
     try:
-        raise WaterError("Not enough water in the tank!")
+        raise WaterError("Not enough water in the tank!\n")
     except WaterError as ex:
         print(f"Caught WaterError: {ex}")
 
@@ -37,7 +37,7 @@ def test_errors() -> None:
     except GardenError as ge:
         print(f"Caught GardenError: {ge}")
     try:
-        raise WaterError("Not enough water in the tank!")
+        raise WaterError("Not enough water in the tank!\n")
     except GardenError as ge:
         print(f"Caught GardenError: {ge}")
 

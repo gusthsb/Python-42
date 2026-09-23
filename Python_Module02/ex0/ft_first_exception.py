@@ -7,11 +7,11 @@ def input_temperature(temp_str: str) -> int:
 
 
 def test_temperature() -> None:
-    print("=== Garden Temperature ===")
+    print("=== Garden Temperature ===\n")
     print("Input data is '25'")
     try:
         temp: int = input_temperature("25")
-        print(f"Temperature is now {temp}°C")
+        print(f"Temperature is now {temp}°C\n")
     except Exception as er:
         print(f"Caught input_temperature error: {er}")
 
@@ -20,7 +20,7 @@ def test_temperature() -> None:
         temp = input_temperature("abc")
         print(f"Temperature is now {temp}°C")
     except Exception as er:
-        print(f"Caught input_temperature error: {er}")
+        print(f"Caught input_temperature error: {er}\n")
 
     print("All tests completed - program didn't crash!")
 

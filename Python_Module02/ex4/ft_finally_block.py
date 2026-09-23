@@ -1,7 +1,13 @@
 #!/usr/bin/env python3
 
-class PlantError(Exception):
-    pass
+class GardenError(Exception):
+    def __init__(self, message: str = "Unknown plant error") -> None:
+        super().__init__(message)
+
+
+class PlantError(GardenError):
+    def __init__(self, message: str = "Unknown plant error") -> None:
+        super().__init__(message)
 
 
 def water_plant(plant_name: str) -> None:
