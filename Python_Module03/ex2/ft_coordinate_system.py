@@ -10,14 +10,12 @@ def get_player_pos() -> tuple[float, float, float]:
         if len(input_parts) != 3:
             print("Invalid syntax")
             continue
-        i: str = ""
         try:
-            temp_list = []
-            for i in input_parts:
-                temp_list.append(float(i.strip()))
-            return (temp_list[0], temp_list[1], temp_list[2])
+            coords = [float(val.strip()) for val in input_parts]
+            return (coords[0], coords[1], coords[2])
         except ValueError as ve:
-            print(f"Error on parameter '{i}': {ve}")
+            print(f"Error on parameter: {ve}")
+            continue
 
 
 def show_coordinate() -> None:
@@ -27,7 +25,7 @@ def show_coordinate() -> None:
     print(f"Got a first tuple: {pos1}")
     print(f"It includes: X={pos1[0]:.1f}, Y={pos1[1]:.1f}, Z={pos1[2]:.1f}")
     dist_center = math.sqrt(pos1[0]**2 + pos1[1]**2 + pos1[2]**2)
-    print(f"Distance to center: {dist_center:.4f}\n")
+    print(f"Distance to center: {dist_center:.4f}\n")   
     print("Get a second set of coordinates")
     pos2 = get_player_pos()
     distance_p2_p1 = math.sqrt(

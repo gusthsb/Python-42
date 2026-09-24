@@ -15,7 +15,7 @@ def command_quest() -> None:
         for arg in args:
             print(f"Argument {i}: {arg}")
             i += 1
-    print(f"Total arguments: {len(sys.argv)}")
+    print(f"Total arguments: {len(sys.argv)}\n")
 
 
 if __name__ == "__main__":
