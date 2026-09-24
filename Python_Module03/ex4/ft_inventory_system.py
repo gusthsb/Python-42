@@ -37,7 +37,7 @@ def show_inventory() -> None:
         for key in inventory:
             value = inventory[key]
             percent = round((value / total_itens) * 100, 1)
-            print(f"item {key} represents {percent}%")
+            print(f"Item {key} represents {percent}%")
         most_abundant = list(inventory.keys())[0]
         least_abundant = list(inventory.keys())[0]
         for key in inventory:
