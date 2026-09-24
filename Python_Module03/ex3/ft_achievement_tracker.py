@@ -25,9 +25,9 @@ def show_achievements() -> None:
     print(f"Player Bob: {bob}")
     print(f"Player Charlie: {charlie}")
     print(f"Player Dylan: {dylan}\n")
-    print(f"All distinct achievement:"
+    print(f"All distinct achievements:"
           f"{set.union(alice, bob, charlie, dylan)}")
-    print(f"Common achievement: {alice & bob & charlie & dylan}\n")
+    print(f"Common achievements: {alice & bob & charlie & dylan}\n")
     print(f"Only Alice has: {alice - bob - charlie - dylan}")
     print(f"Only Bob has: {bob - alice - charlie - dylan}")
     print(f"Only Charlie has: {charlie - bob - alice - dylan}")
