@@ -5,9 +5,9 @@ import random
 
 
 def gen_event() -> typing.Generator[tuple[str, str], None, None]:
-    players = ["alice", "bob", "charlie", "dylan"]
-    actions = ["run", "eat", "sleep", "grab", "move",
-               "climb", "swim", "use", "release"]
+    players: list[str] = ["alice", "bob", "charlie", "dylan"]
+    actions: list[str] = ["run", "eat", "sleep", "grab", "move",
+                          "climb", "swim", "use", "release"]
     while True:
         yield (random.choice(players), random.choice(actions))
 
