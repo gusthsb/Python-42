@@ -16,7 +16,7 @@ def consume_event(
     event_list: list[tuple[str, str]]
 ) -> typing.Generator[tuple[str, str], None, None]:
     while len(event_list) > 0:
-        idx = random.randint(0, len(event_list) - 1)
+        idx: int = random.randint(0, len(event_list) - 1)
         yield event_list.pop(idx)
 
 
