@@ -3,8 +3,8 @@ import random
 
 
 def gen_player_achievements(achievements: list[str]) -> set[str]:
-    len_achievements: int = random.randint(0, len(achievements))
-    player_achievements: list[str] = random.sample(achievements, k=len_achievements)
+    len_lst: int = random.randint(0, len(achievements))
+    player_achievements: list[str] = random.sample(achievements, k=len_lst)
     return set(player_achievements)
 
 
