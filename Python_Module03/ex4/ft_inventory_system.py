@@ -3,7 +3,7 @@ import sys
 
 
 def add_item(inventory: dict[str, int]) -> dict[str, int]:
-    args = sys.argv[1:]
+    args: list[str] = sys.argv[1:]
     for item in args:
         if ":" in item:
             key, value = item.split(":", 1)
@@ -27,19 +27,19 @@ def add_item(inventory: dict[str, int]) -> dict[str, int]:
 def show_inventory() -> None:
     empty_inventory: dict[str, int] = dict()
     print("=== Inventory System Analysis ===")
-    inventory = add_item(empty_inventory)
+    inventory: dict[str, int] = add_item(empty_inventory)
     print(f"Got inventory: {inventory}")
     print(f"Item list: {list(inventory.keys())}")
     if inventory:
-        total_itens = sum(inventory.values())
+        total_itens: int = sum(inventory.values())
         print(f"Total quantity of the {len(inventory.values())}"
               f" items: {total_itens}")
         for key in inventory:
             value = inventory[key]
-            percent = round((value / total_itens) * 100, 1)
+            percent: float = round((value / total_itens) * 100, 1)
             print(f"Item {key} represents {percent}%")
-        most_abundant = list(inventory.keys())[0]
-        least_abundant = list(inventory.keys())[0]
+        most_abundant: str = list(inventory.keys())[0]
+        least_abundant: str = list(inventory.keys())[0]
         for key in inventory:
             if inventory[key] > inventory[most_abundant]:
                 most_abundant = key
