@@ -26,7 +26,7 @@ def show_event() -> None:
     for i in range(1000):
         event = next(init_event)
         print(f"Event {i}: Player {event[0]} did action {event[1]}")
-    event_list = list()
+    event_list: list[tuple[str, str]] = list()
     for _ in range(10):
         event_list.append(next(init_event))
     print(f"Built list of 10 events: {event_list}")
