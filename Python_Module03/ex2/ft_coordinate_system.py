@@ -11,7 +11,7 @@ def get_player_pos() -> tuple[float, float, float]:
             print("Invalid syntax")
             continue
         try:
-            coords = [float(value.strip()) for value in input_parts]
+            coords: list[float] = [float(value.strip()) for value in input_parts]
             return (coords[0], coords[1], coords[2])
         except ValueError as ve:
             print(f"Error on parameter: {ve}")
