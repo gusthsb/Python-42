@@ -5,7 +5,7 @@ import typing
 
 
 def checking_arg() -> None:
-    argv = sys.argv
+    argv: list[str] = sys.argv
     if len(argv) != 2:
         print("Usage: ft_ancient_text.py <file>")
         return
