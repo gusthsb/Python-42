@@ -32,10 +32,10 @@ if __name__ == "__main__":
     print("Using 'secure_archive' to read from a regular file:")
     with open("ancient_fragment.txt", "w") as f:
         f.write("[FRAGMENT 001] Digital preservation"
-                "protocols established 2087\n"
+                " protocols established 2087\n"
                 "[FRAGMENT 002] Knowledge must survive the entropy wars\n"
                 "[FRAGMENT 003] Every byte saved is a victory"
-                "against oblivion\n")
+                " against oblivion\n")
     print(secure_archive("ancient_fragment.txt", "read"))
     print()
 
