@@ -13,7 +13,7 @@ def checking_arg() -> None:
     print("=== Cyber Archives Recovery ===")
     print(f"Accessing file '{argv[1]}'")
     try:
-        file_opening: typing.IO = open(file_name)
+        file_opening: typing.TextIO = open(file_name)
         print("---\n")
         read_content: str = file_opening.read()
         print(read_content, end="")

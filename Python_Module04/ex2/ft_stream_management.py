@@ -15,7 +15,7 @@ def process_archive() -> None:
     print(f"Accessing file '{file_name}'")
 
     try:
-        file_opening: typing.IO = open(file_name)
+        file_opening: typing.TextIO = open(file_name)
         print("---\n")
 
         read_content: str = file_opening.read()
@@ -52,7 +52,7 @@ def process_archive() -> None:
         print(f"Saving data to '{new_file_name}'")
 
         try:
-            new_file: typing.IO = open(new_file_name, 'w')
+            new_file: typing.TextIO = open(new_file_name, 'w')
             new_file.write(last_text)
             new_file.close()
             print(f"Data saved in file '{new_file_name}'.")
