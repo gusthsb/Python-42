@@ -8,7 +8,7 @@ class DataProcessor(ABC):
     def __init__(self) -> None:
         super().__init__()
         self._storage: list[str] = list()
-        self._rank = 0
+        self._rank: int = 0
 
     @abstractmethod
     def validate(self, data: typing.Any) -> bool:

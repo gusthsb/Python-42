@@ -8,7 +8,7 @@ class DataProcessor(ABC):
     def __init__(self) -> None:
         super().__init__()
         self._storage: list[str] = list()
-        self._rank = 0
+        self._rank: int = 0
 
     @abstractmethod
     def validate(self, data: typing.Any) -> bool:
@@ -19,8 +19,8 @@ class DataProcessor(ABC):
         pass
 
     def output(self) -> tuple[int, str]:
-        data = self._storage.pop(0)
-        current_rank = self._rank
+        data: str = self._storage.pop(0)
+        current_rank: int = self._rank
         self._rank += 1
         return (current_rank, data)
 
