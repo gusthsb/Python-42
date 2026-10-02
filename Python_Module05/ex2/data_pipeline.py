@@ -102,11 +102,11 @@ class LogProcessor(DataProcessor):
         if not self.validate(data):
             raise ValueError("Improper log data")
         if isinstance(data, dict):
-            formatted_log = ": ".join(data.values())
+            formatted_log: str = ": ".join(data.values())
             self._storage.append(formatted_log)
         elif isinstance(data, list):
             for content in data:
-                formatted_log = ": ".join(content.values())
+                formatted_log: str = ": ".join(content.values())
                 self._storage.append(formatted_log)
 
 
@@ -124,8 +124,8 @@ class CSVPlugin:
 
 class JSONPlugin:
     def process_output(self, data: list[tuple[int, str]]) -> None:
-        formatted_items = [f'"item_{rank}": "{val}"' for rank, val in data]
-        json_line = "{" + ", ".join(formatted_items) + "}"
+        formatted_items: list[str] = [f'"item_{rank}": "{val}"' for rank, val in data]
+        json_line: str = "{" + ", ".join(formatted_items) + "}"
         print(f"JSON Output:\n{json_line}")
 
 
@@ -190,7 +190,7 @@ if __name__ == "__main__":
     stream.register_processor(txt_proc)
     stream.register_processor(log_proc)
 
-    batch1 = [
+    batch1: list[typing.Any] = [
         'Hello world',
         [3.14, -1, 2.71],
         [
@@ -211,7 +211,7 @@ if __name__ == "__main__":
     stream.output_pipeline(3, csv_plugin)
     stream.print_processors_stats()
 
-    batch2 = [
+    batch2: list[typing.Any] = [
         21,
         ['I love AI', 'LLMs are wonderful', 'Stay healthy'],
         [
