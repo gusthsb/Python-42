@@ -101,11 +101,15 @@ class LogProcessor(DataProcessor):
     def ingest(self, data: dict[str, str] | list[dict[str, str]]) -> None:
         if not self.validate(data):
             raise ValueError("Improper log data")
+
         if isinstance(data, dict):
-            self._storage.append(str(data))
+            formatted_log = ": ".join(data.values())
+            self._storage.append(formatted_log)
+
         elif isinstance(data, list):
             for content in data:
-                self._storage.append(str(content))
+                formatted_log = ": ".join(content.values())
+                self._storage.append(formatted_log)
 
 
 if __name__ == "__main__":
