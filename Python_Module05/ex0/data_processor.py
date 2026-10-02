@@ -103,12 +103,12 @@ class LogProcessor(DataProcessor):
             raise ValueError("Improper log data")
 
         if isinstance(data, dict):
-            formatted_log = ": ".join(data.values())
+            formatted_log: str = ": ".join(data.values())
             self._storage.append(formatted_log)
 
         elif isinstance(data, list):
             for content in data:
-                formatted_log = ": ".join(content.values())
+                formatted_log: str = ": ".join(content.values())
                 self._storage.append(formatted_log)
 
 
