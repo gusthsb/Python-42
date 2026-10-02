@@ -156,10 +156,10 @@ class DataStream():
             print("No processor found, no data")
 
         for processor in self._processors:
-            raw_name = processor.__class__.__name__
-            name = raw_name.replace("Processor", " Processor")
-            remaining = len(processor._storage)
-            total = remaining + processor._rank
+            raw_name: str = processor.__class__.__name__
+            name: str = raw_name.replace("Processor", " Processor")
+            remaining: int = len(processor._storage)
+            total: int = remaining + processor._rank
 
             print(f"{name}: total {total} "
                   f"items processed, remaining {remaining} on processor")
@@ -178,13 +178,13 @@ if __name__ == "__main__":
     print("=== Code Nexus - Data Pipeline ===")
 
     print("Initialize Data Stream...")
-    stream = DataStream()
+    stream: DataStream = DataStream()
     stream.print_processors_stats()
 
     print("\nRegistering Processors\n")
-    num_proc = NumericProcessor()
-    txt_proc = TextProcessor()
-    log_proc = LogProcessor()
+    num_proc: NumericProcessor = NumericProcessor()
+    txt_proc: TextProcessor = TextProcessor()
+    log_proc: LogProcessor = LogProcessor()
 
     stream.register_processor(num_proc)
     stream.register_processor(txt_proc)
@@ -207,7 +207,7 @@ if __name__ == "__main__":
     stream.print_processors_stats()
 
     print("\nSend 3 processed data from each processor to a CSV plugin:")
-    csv_plugin = CSVPlugin()
+    csv_plugin: CSVPlugin = CSVPlugin()
     stream.output_pipeline(3, csv_plugin)
     stream.print_processors_stats()
 
@@ -228,6 +228,6 @@ if __name__ == "__main__":
     stream.print_processors_stats()
 
     print("\nSend 5 processed data from each processor to a JSON plugin:")
-    json_plugin = JSONPlugin()
+    json_plugin: JSONPlugin = JSONPlugin()
     stream.output_pipeline(5, json_plugin)
     stream.print_processors_stats()
