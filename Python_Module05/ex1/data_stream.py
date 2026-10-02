@@ -135,10 +135,10 @@ class DataStream():
             print("No processor found, no data")
 
         for processor in self._processors:
-            raw_name = processor.__class__.__name__
-            name = raw_name.replace("Processor", " Processor")
-            remaining = len(processor._storage)
-            total = remaining + processor._rank
+            raw_name: str = processor.__class__.__name__
+            name: str = raw_name.replace("Processor", " Processor")
+            remaining: int = len(processor._storage)
+            total: int = remaining + processor._rank
 
             print(f"{name}: total {total} "
                   f"items processed, remaining {remaining} on processor")
@@ -148,14 +148,14 @@ if __name__ == "__main__":
     print("=== Code Nexus - Data Stream ===")
 
     print("\nInitialize Data Stream...")
-    stream = DataStream()
+    stream: DataStream = DataStream()
     stream.print_processors_stats()
 
     print("\nRegistering Numeric Processor")
-    num_proc = NumericProcessor()
+    num_proc: NumericProcessor = NumericProcessor()
     stream.register_processor(num_proc)
 
-    batch = [
+    batch: list[typing.Any] = [
         'Hello world',
         [3.14, -1, 2.71],
         [
@@ -172,8 +172,8 @@ if __name__ == "__main__":
     stream.print_processors_stats()
 
     print("\nRegistering other data processors")
-    txt_proc = TextProcessor()
-    log_proc = LogProcessor()
+    txt_proc: TextProcessor = TextProcessor()
+    log_proc: LogProcessor = LogProcessor()
     stream.register_processor(txt_proc)
     stream.register_processor(log_proc)
 
