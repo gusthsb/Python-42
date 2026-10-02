@@ -117,15 +117,15 @@ class ExportPlugin(typing.Protocol):
 
 class CSVPlugin:
     def process_output(self, data: list[tuple[int, str]]) -> None:
-        values = [item[1] for item in data]
-        csv_line = ",".join(values)
+        values: list[str] = [item[1] for item in data]
+        csv_line: str = ",".join(values)
         print(f"CSV Output:\n{csv_line}")
 
 
 class JSONPlugin:
     def process_output(self, data: list[tuple[int, str]]) -> None:
-        values = [f'"item_{rank}": "{values}"' for rank, values in data]
-        json_line = "{" + ", ".join(values) + "}"
+        formatted_items = [f'"item_{rank}": "{val}"' for rank, val in data]
+        json_line = "{" + ", ".join(formatted_items) + "}"
         print(f"JSON Output:\n{json_line}")
 
 
@@ -166,7 +166,7 @@ class DataStream():
 
     def output_pipeline(self, nb: int, plugin: ExportPlugin) -> None:
         for processor in self._processors:
-            data_extracted = []
+            data_extracted: list[tuple[int, str]] = []
             for _ in range(nb):
                 if len(processor._storage) > 0:
                     data_extracted.append(processor.output())
