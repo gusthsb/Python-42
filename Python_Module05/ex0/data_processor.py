@@ -8,7 +8,7 @@ class DataProcessor(ABC):
     def __init__(self) -> None:
         super().__init__()
         self._storage: list[str] = list()
-        self._rank = 0
+        self._rank: int = 0
 
     @abstractmethod
     def validate(self, data: typing.Any) -> bool:
@@ -19,8 +19,8 @@ class DataProcessor(ABC):
         pass
 
     def output(self) -> tuple[int, str]:
-        data = self._storage.pop(0)
-        current_rank = self._rank
+        data: str = self._storage.pop(0)
+        current_rank: int = self._rank
         self._rank += 1
         return (current_rank, data)
 
@@ -112,7 +112,7 @@ if __name__ == "__main__":
     print("=== Code Nexus - Data Processor ===\n")
 
     print("Testing Numeric Processor...")
-    num_proc = NumericProcessor()
+    num_proc: NumericProcessor = NumericProcessor()
 
     print(f"Trying to validate input '42': {num_proc.validate(42)}")
     print(f"Trying to validate input 'Hello': {num_proc.validate('Hello')}")
@@ -131,7 +131,7 @@ if __name__ == "__main__":
         print(f"Numeric value {rank}: {val}")
 
     print("\nTesting Text Processor...")
-    txt_proc = TextProcessor()
+    txt_proc: TextProcessor = TextProcessor()
 
     print(f"Trying to validate input '42': {txt_proc.validate(42)}")
     print("Processing data: ['Hello', 'Nexus', 'World']")
@@ -142,11 +142,11 @@ if __name__ == "__main__":
     print(f"Text value {rank}: {val}")
 
     print("\nTesting Log Processor...")
-    log_proc = LogProcessor()
+    log_proc: LogProcessor = LogProcessor()
 
     print(f"Trying to validate input 'Hello': {log_proc.validate('Hello')}")
 
-    log_data = [
+    log_data: list[dict[str, str]] = [
         {'log_level': 'NOTICE', 'log_message': 'Connection to server'},
         {'log_level': 'ERROR', 'log_message': 'Unauthorized access!!'}
     ]
