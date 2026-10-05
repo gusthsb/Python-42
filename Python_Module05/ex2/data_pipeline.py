@@ -106,8 +106,8 @@ class LogProcessor(DataProcessor):
             self._storage.append(formatted_log)
         elif isinstance(data, list):
             for content in data:
-                formatted_log: str = ": ".join(content.values())
-                self._storage.append(formatted_log)
+                formatted: str = ": ".join(content.values())
+                self._storage.append(formatted)
 
 
 class ExportPlugin(typing.Protocol):
