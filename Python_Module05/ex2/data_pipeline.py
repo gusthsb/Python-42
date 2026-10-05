@@ -95,7 +95,7 @@ class LogProcessor(DataProcessor):
                 for k, c in item.items():
                     if not isinstance(k, str) or not isinstance(c, str):
                         return False
-                return True
+            return True
         return False
 
     def ingest(self, data: dict[str, str] | list[dict[str, str]]) -> None:
