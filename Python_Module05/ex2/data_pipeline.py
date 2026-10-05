@@ -124,7 +124,8 @@ class CSVPlugin:
 
 class JSONPlugin:
     def process_output(self, data: list[tuple[int, str]]) -> None:
-        formatted_items: list[str] = [f'"item_{rank}": "{val}"' for rank, val in data]
+        formatted_items: list[str] = [f'"item_{rank}": "{val}"'
+                                      for rank, val in data]
         json_line: str = "{" + ", ".join(formatted_items) + "}"
         print(f"JSON Output:\n{json_line}")
 
