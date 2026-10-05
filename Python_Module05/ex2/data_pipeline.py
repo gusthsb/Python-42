@@ -172,7 +172,8 @@ class DataStream():
                 if len(processor._storage) > 0:
                     data_extracted.append(processor.output())
 
-            plugin.process_output(data_extracted)
+            if data_extracted:
+                plugin.process_output(data_extracted)
 
 
 if __name__ == "__main__":
