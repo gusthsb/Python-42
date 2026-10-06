@@ -6,3 +6,7 @@ def ft_alembic_1() -> None:
     print("Using: 'from elements import create_water' "
           "structure to access elements.py")
     print(f"Testing create_water: {create_water()}\n")
+
+
+if __name__ == "__main__":
+    ft_alembic_1()

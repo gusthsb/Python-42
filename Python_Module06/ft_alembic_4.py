@@ -14,3 +14,7 @@ def ft_alembic_4() -> None:
         print("Traceback (most recent call last):")
         print(" ...")
         print(f"AttributeError: {e}")
+
+
+if __name__ == "__main__":
+    ft_alembic_4()

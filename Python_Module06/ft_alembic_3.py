@@ -6,3 +6,7 @@ def ft_alembic_3() -> None:
     print("Accessing alchemy/elements.py using "
           "'from ... import ...' structure")
     print(f"Testing create_air: {create_air()}\n")
+
+
+if __name__ == "__main__":
+    ft_alembic_3()
