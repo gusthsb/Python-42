@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 from ex0 import FlameFactory, AquaFactory, CreatureFactory
 from ex1 import HealingCreatureFactory, TransformCreatureFactory
 from ex2 import BattleStrategy as bs

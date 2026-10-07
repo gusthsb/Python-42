@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 from ex0 import FlameFactory, AquaFactory, CreatureFactory
 
 
@@ -33,6 +34,6 @@ def base_battle(factory1: CreatureFactory, factory2: CreatureFactory,
 
 
 if __name__ == "__main__":
-    test_flame_creature = test_factory(FlameFactory(), "Flameling", "Pyrodon")
-    test_aqua_creature = test_factory(AquaFactory(), "Aquabub", "Torragon")
+    test_factory(FlameFactory(), "Flameling", "Pyrodon")
+    test_factory(AquaFactory(), "Aquabub", "Torragon")
     base_battle(FlameFactory(), AquaFactory(), "Flameling", "Aquabub")
