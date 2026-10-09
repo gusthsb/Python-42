@@ -7,5 +7,5 @@ __all__ = [
     "FlameFactory",
     "AquaFactory",
     "CreatureFactory",
-    "Creature",
+    "Creature"
 ]

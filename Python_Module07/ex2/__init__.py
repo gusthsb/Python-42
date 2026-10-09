@@ -6,5 +6,5 @@ __all__ = [
     "AggressiveStrategy",
     "DefensiveStrategy",
     "NormalStrategy",
-    "BattleStrategy",
+    "BattleStrategy"
 ]
