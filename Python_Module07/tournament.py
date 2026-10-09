@@ -51,8 +51,8 @@ if __name__ == "__main__":
     print("Tournament 0 (basic) [ (Flameling+Normal), (Healing+Defensive) ]")
     tournament([(flame, normal_strat), (heal, def_strat)])
 
-    print("\nTournament 1 (error) [ "
-          "(Flameling+Aggressive), (Healing+Defensive) ]")
+    print("\nTournament 1 (error) [ \n"
+          " (Flameling+Aggressive), (Healing+Defensive) ]")
     tournament([(flame, agr_strat), (heal, def_strat)])
 
     print(
