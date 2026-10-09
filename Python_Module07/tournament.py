@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-from ex0 import FlameFactory, AquaFactory, CreatureFactory
+from ex0 import FlameFactory, AquaFactory, CreatureFactory, Creature
 from ex1 import HealingCreatureFactory, TransformCreatureFactory
 from ex2 import BattleStrategy as bs
 from ex2 import NormalStrategy, DefensiveStrategy, AggressiveStrategy
@@ -8,7 +8,7 @@ from ex2 import NormalStrategy, DefensiveStrategy, AggressiveStrategy
 def tournament(opponents: list[tuple[CreatureFactory, bs]]) -> None:
     print(f"*** Tournament *** {len(opponents)} opponents involved")
 
-    creature_names = {
+    creature_names: dict[str, str] = {
         "FlameFactory": "Flameling",
         "AquaFactory": "Aquabub",
         "HealingCreatureFactory": "Sproutling",
@@ -20,31 +20,33 @@ def tournament(opponents: list[tuple[CreatureFactory, bs]]) -> None:
             factory1, strategy1 = opponents[i]
             factory2, strategy2 = opponents[j]
 
-            n1 = creature_names.get(factory1.__class__.__name__, "Unknown")
-            n2 = creature_names.get(factory2.__class__.__name__, "Unknown")
+            base_name1: str = creature_names.get(
+                factory1.__class__.__name__, "Unknown")
+            base_name2: str = creature_names.get(
+                factory2.__class__.__name__, "Unknown")
 
-            c1 = factory1.create_base(n1)
-            c2 = factory2.create_base(n2)
+            base_creature1: Creature = factory1.create_base(base_name1)
+            base_creature2: Creature = factory2.create_base(base_name2)
 
-            print(f"* Battle * {c1.describe()} "
-                  f"vs.\n{c2.describe()} now fight!")
+            print(f"* Battle * {base_creature1.describe()} "
+                  f"vs.\n{base_creature2.describe()} now fight!")
 
             try:
-                strategy1.act(c1)
-                strategy2.act(c2)
+                strategy1.act(base_creature1)
+                strategy2.act(base_creature2)
             except ValueError as e:
                 print(f"Battle error, aborting tournament: {e}")
                 return
 
 
 if __name__ == "__main__":
-    flame = FlameFactory()
-    aqua = AquaFactory()
-    heal = HealingCreatureFactory()
-    transform = TransformCreatureFactory()
-    normal_strat = NormalStrategy()
-    def_strat = DefensiveStrategy()
-    agr_strat = AggressiveStrategy()
+    flame: FlameFactory = FlameFactory()
+    aqua: AquaFactory = AquaFactory()
+    heal: HealingCreatureFactory = HealingCreatureFactory()
+    transform: TransformCreatureFactory = TransformCreatureFactory()
+    normal_strat: NormalStrategy = NormalStrategy()
+    def_strat: DefensiveStrategy = DefensiveStrategy()
+    agr_strat: AggressiveStrategy = AggressiveStrategy()
 
     print("Tournament 0 (basic) [ (Flameling+Normal), (Healing+Defensive) ]")
     tournament([(flame, normal_strat), (heal, def_strat)])

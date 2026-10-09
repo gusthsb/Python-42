@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+from ex0.creatures import Creature
 from ex1 import HealingCreatureFactory, TransformCreatureFactory
 from ex1 import HealCapability, TransformCapability
 
@@ -6,11 +7,8 @@ from ex1 import HealCapability, TransformCapability
 def test_healing_factory(
     factory: HealingCreatureFactory, b_name: str, e_name: str
 ) -> None:
-    """
-    Testing creations, discriptions, attacks and heals of the creatures
-    """
-    base_creature = factory.create_base(b_name)
-    evolved_creature = factory.create_evolved(e_name)
+    base_creature: Creature = factory.create_base(b_name)
+    evolved_creature: Creature = factory.create_evolved(e_name)
     print("Testing Creature with healing capability\n base:")
 
     print(base_creature.describe())
@@ -30,11 +28,8 @@ def test_healing_factory(
 def test_transform_factory(
     factory: TransformCreatureFactory, b_name: str, e_name: str
 ) -> None:
-    """
-    Testing creations, discriptions, attacks and transform of the creatures
-    """
-    base_creature = factory.create_base(b_name)
-    evolved_creature = factory.create_evolved(e_name)
+    base_creature: Creature = factory.create_base(b_name)
+    evolved_creature: Creature = factory.create_evolved(e_name)
 
     print("\nTesting Creature with transform capability")
     print(" base:")
@@ -64,6 +59,6 @@ def test_transform_factory(
 
 
 if __name__ == "__main__":
-    nlist = ["Sproutling", "Bloomelle", "Shiftling", "Morphagon"]
+    nlist: list[str] = ["Sproutling", "Bloomelle", "Shiftling", "Morphagon"]
     test_healing_factory(HealingCreatureFactory(), nlist[0], nlist[1])
     test_transform_factory(TransformCreatureFactory(), nlist[2], nlist[3])
