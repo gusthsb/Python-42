@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 import sys
 import os
 
@@ -12,8 +13,8 @@ def py_path() -> str:
 
 def check_venv_name() -> str:
     if on_venv():
-        venv_path = sys.prefix
-        venv_name = os.path.basename(venv_path)
+        venv_path: str = sys.prefix
+        venv_name: str = os.path.basename(venv_path)
         return f"Virtual Environment: {venv_name}"
     else:
         return "Virtual Environment: None detected"
