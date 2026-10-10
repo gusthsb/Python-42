@@ -3,7 +3,7 @@ import os
 import sys
 
 try:
-    from dotenv import load_dotenv
+    from dotenv import load_dotenv # type: ignore
 except ImportError:
     print("ERROR: python-dotenv is not installed.")
     print("Please run: pip install python-dotenv")
