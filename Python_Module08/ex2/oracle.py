@@ -24,9 +24,12 @@ def access_mainframe() -> None:
     log_level: str = os.getenv("LOG_LEVEL", default_log).upper()
 
     missing: list[str] = []
-    if not db_url: missing.append("DATABASE_URL")
-    if not api_key: missing.append("API_KEY")
-    if not zion_endpoint: missing.append("ZION_ENDPOINT")
+    if not db_url:
+        missing.append("DATABASE_URL")
+    if not api_key:
+        missing.append("API_KEY")
+    if not zion_endpoint:
+        missing.append("ZION_ENDPOINT")
 
     print("=== Configuration Loaded ===")
     print(f"Matrix Mode   : {mode.upper()}")
