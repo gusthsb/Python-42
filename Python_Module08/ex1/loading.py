@@ -73,7 +73,7 @@ def data_visualization(data_frame: "pd.DataFrame") -> None:
 
         plt.xlabel("Matches")
         plt.ylabel("Amount of Goals")
-        plt.grid(True, linestyle='--', alpha=0.7)
+        plt.grid(True, linestyle='--', alpha=0.5)
 
         plt.savefig(OUTPUT_FILE)
 
