@@ -40,7 +40,7 @@ def main() -> None:
         print(f"Notes: {v_station.notes}")
 
     except ValidationError as e:
-        print(f"Unexpected error: {e}")
+        print(f"Unexpected error: {e.errors()[0]['msg']}")
 
     print("=" * 40)
 
@@ -55,7 +55,8 @@ def main() -> None:
         })
 
     except ValidationError as e:
-        print(f"Expected validation error: {e}")
+        print("Expected validation error:")
+        print(e.errors()[0]["msg"])
 
 
 if __name__ == "__main__":

@@ -25,7 +25,7 @@ class AlienContact(BaseModel):
     @model_validator(mode="after")
     def check_business_rules(self) -> "AlienContact":
         if not self.contact_id.startswith("AC"):
-            raise ValueError('Contact id must be start with "AC"')
+            raise ValueError('Contact ID must be start with "AC"')
         if self.contact_type == ContactType.PHYSICAL and not self.is_verified:
             raise ValueError("Physical contact reports must be verified")
         if (self.contact_type == ContactType.TELEPATHIC
