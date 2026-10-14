@@ -27,6 +27,7 @@ def main() -> None:
             "oxygen_level": 92.3,
             "last_maintenance": "2023-10-24T12:00:00Z",
             "is_operational": True,
+            "notes": "simple note btw",
         })
         status = "Operational" if v_station.is_operational else "Offline"
         print("Valid station created:")
@@ -36,6 +37,7 @@ def main() -> None:
         print(f"Power: {v_station.power_level}%")
         print(f"Oxygen: {v_station.oxygen_level}%")
         print(f"Status: {status}")
+        print(f"Notes: {v_station.notes}")
 
     except ValidationError as e:
         print(f"Unexpected error: {e}")
