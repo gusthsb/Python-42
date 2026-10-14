@@ -5,7 +5,7 @@ from pydantic import BaseModel, Field, ValidationError
 
 class SpaceStation(BaseModel):
     station_id: str = Field(min_length=3, max_length=10)
-    name: str = Field(min_length=1, max_length=10)
+    name: str = Field(min_length=1, max_length=50)
     crew_size: int = Field(ge=1, le=20)
     power_level: float = Field(ge=0.0, le=100.0)
     oxygen_level: float = Field(ge=0.0, le=100.0)
@@ -16,30 +16,44 @@ class SpaceStation(BaseModel):
 
 def main() -> None:
     print("Space Station Data Validation")
-    print("=" * 39)
+    print("=" * 40)
 
     try:
-        valid_station = SpaceStation(
-            station_id="ISS001",
-            name="International Space Station",
-            crew_size=6,
-            power_level=85.5,
-            oxygen_level=92.3,
-            last_maintenance="2023-10-24T12:00:00z",
-            is_operational=True
-        )
+        v_station = SpaceStation.model_validate({
+            "station_id": "ISS001",
+            "name": "International Space Station",
+            "crew_size": 6,
+            "power_level": 85.5,
+            "oxygen_level": 92.3,
+            "last_maintenance": "2023-10-24T12:00:00Z",
+            "is_operational": True,
+        })
+        status = "Operational" if v_station.is_operational else "Offline"
         print("Valid station created:")
-        print(f"ID: {valid_station.station_id}")
-        print(f"Name: {valid_station.name}")
-        print(f"Crew: {valid_station.crew_size} people")
-        print(f"Power: {valid_station.power_level}%")
-        print(f"Oxygen: {valid_station.oxygen_level}%")
-        print(f"Status: {'Operational' if valid_station.is_operational else 'Offline'}")
+        print(f"ID: {v_station.station_id}")
+        print(f"Name: {v_station.name}")
+        print(f"Crew: {v_station.crew_size} people")
+        print(f"Power: {v_station.power_level}%")
+        print(f"Oxygen: {v_station.oxygen_level}%")
+        print(f"Status: {status}")
 
     except ValidationError as e:
-        print("Unexpected error: {e}")
+        print(f"Unexpected error: {e}")
 
-    print("=" * 39)
+    print("=" * 40)
+
+    try:
+        SpaceStation.model_validate({
+            "station_id": "BAF002",
+            "name": "SP station",
+            "crew_size": 25,
+            "power_level": 50.0,
+            "oxygen_level": 50.0,
+            "last_maintenance": "2023-10-24T12:00:00Z",
+        })
+
+    except ValidationError as e:
+        print(f"Expected validation error: {e}")
 
 
 if __name__ == "__main__":
